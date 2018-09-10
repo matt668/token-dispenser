@@ -43,9 +43,9 @@ public class TokenAc2dmResource {
     GooglePlayAPI getApi() {
         Properties properties = new Properties();
         try {
-            properties.load(getClass().getClassLoader().getSystemResourceAsStream("device-gemini.properties"));
+            properties.load(getClass().getClassLoader().getSystemResourceAsStream("device-bacon.properties"));
         } catch (IOException e) {
-            halt(500, "device-gemini.properties not found");
+            halt(500, "device-bacon.properties not found");
         }
 
         PropertiesDeviceInfoProvider deviceInfoProvider = new PropertiesDeviceInfoProvider();
