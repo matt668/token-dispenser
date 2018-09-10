@@ -5,7 +5,7 @@ Using Google Play Store API requires logging in using email and password. If you
 
 ### Building
 
-1. `git clone https://github.com/yeriomin/token-dispenser`
+1. `git clone https://github.com/matlink/token-dispenser`
 2. `cd token-dispenser`
 3. Edit `src/main/resources/config.properties`
 4. `mvn install`
@@ -39,6 +39,8 @@ There are two storage options supported:
 ### Usage
 Once server is configured, you can get the tokens for **regular requests** at http://server-address:port/token/email/youremail@gmail.com
 and tokens for **checkin requests** at http://server-address:port/token-ac2dm/email/youremail@gmail.com
+#### with gplaycli
+gplaycli requires also the GSFid. Token and GSFid can be retrieved using http://server-adress:port/email/gsfid. A random couple (login, password) will be fetched from the provided ones, to load balance over multiple accounts, mitigating account ban possibilities.
 
 ### Credits
 
