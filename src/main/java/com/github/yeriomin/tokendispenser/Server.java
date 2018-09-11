@@ -61,6 +61,7 @@ public class Server {
         if (config.getProperty(PROPERTY_EMAIL_RETRIEVAL, "false").equals("true")) {
             get("/email", (req, res) -> new EmailResource().handle(req, res));
             get("/email/gsfid", (req, res) -> new TokenAc2dmGsfIdResource().handle(req, res));
+            get("/email/gsfid/:device", (req, res) -> new TokenAc2dmGsfIdResource().handle(req, res));
         }
     }
 

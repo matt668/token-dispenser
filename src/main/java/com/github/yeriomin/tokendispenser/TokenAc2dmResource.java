@@ -7,6 +7,7 @@ import com.github.yeriomin.playstoreapi.PropertiesDeviceInfoProvider;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Properties;
+import java.lang.NullPointerException;
 
 import spark.Request;
 import spark.Response;
@@ -41,11 +42,16 @@ public class TokenAc2dmResource {
     }
 
     GooglePlayAPI getApi() {
+	return getApi("bacon");
+    }
+
+    GooglePlayAPI getApi(String device) {
+	String device_file = "device-" + device + ".properties";
         Properties properties = new Properties();
         try {
-            properties.load(getClass().getClassLoader().getSystemResourceAsStream("device-bacon.properties"));
-        } catch (IOException e) {
-            halt(500, "device-bacon.properties not found");
+            properties.load(getClass().getClassLoader().getSystemResourceAsStream(device_file));
+        } catch (IOException | NullPointerException e) {
+            halt(500, device_file + " not found");
         }
 
         PropertiesDeviceInfoProvider deviceInfoProvider = new PropertiesDeviceInfoProvider();
