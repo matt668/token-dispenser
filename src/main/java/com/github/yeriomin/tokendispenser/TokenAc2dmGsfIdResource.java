@@ -17,14 +17,18 @@ public class TokenAc2dmGsfIdResource extends TokenAc2dmResource {
 
     @Override
     public String handle(Request request, Response response) {
+	String device = request.params("device");
+	if (device == null){
+		device = "bacon";
+	}
         String email = Server.passwords.getRandomEmail();
         String password = Server.passwords.get(email);
         int code = 500;
         String message;
         try {
-            String token = getApi().generateToken(email, password);
-            String ac2dmToken = getApi().generateAC2DMToken(email, password);
-            String gsfId = getApi().generateGsfId(email, ac2dmToken);
+            String token = getApi(device).generateToken(email, password);
+            String ac2dmToken = getApi(device).generateAC2DMToken(email, password);
+            String gsfId = getApi(device).generateGsfId(email, ac2dmToken);
             return token + " " + gsfId;
         } catch (GooglePlayException e) {
             if (e.getCode() >= 400) {
