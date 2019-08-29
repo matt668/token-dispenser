@@ -9,6 +9,8 @@ public class PasswordsDbFactory {
         Server.LOG.info("Initializing storage type " + storage);
         if (storage.equals(Server.STORAGE_MONGODB)) {
             return new PasswordsDbMongo(config);
+        } else if(storage.equals(Server.STORAGE_ENV)) {
+            return new PasswordsDbEnv(config);
         } else {
             return new PasswordsDbPlaintext(config);
         }
