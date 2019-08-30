@@ -31,7 +31,7 @@ public class TokenAc2dmResource {
                 code = e.getCode();
             }
             message = e.getMessage();
-            Server.LOG.warn(e.getClass().getName() + ": " + message);
+            Server.LOG.warn(e.getClass().getName() + ": " + message + (e.getRawResponse() != null ? (" body: " + new String(e.getRawResponse())) : ""));
             halt(code, message);
         } catch (IOException e) {
             message = e.getMessage();
