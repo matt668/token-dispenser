@@ -6,7 +6,7 @@
 
     <groupId>com.github.yeriomin</groupId>
     <artifactId>token-dispenser</artifactId>
-    <version>0.3</version>
+    <version>0.4</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -22,9 +22,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.yeriomin</groupId>
+            <groupId>com.github.matt668</groupId>
             <artifactId>play-store-api</artifactId>
-            <version>0.44.2</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>

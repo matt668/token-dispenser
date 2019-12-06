@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.Collections;
 
 class OkHttpClientAdapter extends HttpClientAdapter {
 
@@ -19,6 +20,7 @@ class OkHttpClientAdapter extends HttpClientAdapter {
 
     public OkHttpClientAdapter() {
         setClient(new OkHttpClient.Builder()
+            .connectionSpecs(Collections.singletonList(ConnectionSpec.RESTRICTED_TLS))
             .connectTimeout(6, TimeUnit.SECONDS)
             .readTimeout(6, TimeUnit.SECONDS)
             .cookieJar(new CookieJar() {
