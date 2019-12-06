@@ -19,8 +19,20 @@ class OkHttpClientAdapter extends HttpClientAdapter {
     OkHttpClient client;
 
     public OkHttpClientAdapter() {
+        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+            .tlsVersions(TlsVersion.TLS_1_2)
+            .cipherSuites(
+                CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                CipherSuite.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+                CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                CipherSuite.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
+                CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256)
+            .build();
+        
         setClient(new OkHttpClient.Builder()
-            .connectionSpecs(Collections.singletonList(ConnectionSpec.RESTRICTED_TLS))
+            .connectionSpecs(Collections.singletonList(spec))
+            .protocols(Collections.singletonList(Protocol.HTTP_1_1))
             .connectTimeout(6, TimeUnit.SECONDS)
             .readTimeout(6, TimeUnit.SECONDS)
             .cookieJar(new CookieJar() {
